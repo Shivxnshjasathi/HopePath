@@ -33,6 +33,7 @@ const prompt = ai.definePrompt({
   name: 'crisisChatbotPrompt',
   input: {schema: CrisisChatbotInputSchema},
   output: {schema: CrisisChatbotOutputSchema},
+  model: 'gemini-1.5-flash',
   prompt: `You are a crisis support chatbot designed to provide immediate help and guidance to users in distress.
   Your goal is to offer empathetic support, practical advice, and connect them with additional resources like mentors or support groups.
   Keep responses short and actionable, no more than 3 sentences.
