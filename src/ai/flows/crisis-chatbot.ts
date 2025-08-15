@@ -39,7 +39,7 @@ const prompt = ai.definePrompt({
 
   Here's the chat history:
   {{#each chatHistory}}
-    {{#if (eq role \"user\")}}
+    {{#if (eq role "user")}}
       User: {{{content}}}
     {{else}}
       Chatbot: {{{content}}}
@@ -48,7 +48,7 @@ const prompt = ai.definePrompt({
 
   User message: {{{message}}}
 
-  Chatbot:`, //Always prefix the response with Chatbot:
+  Chatbot:`,
 });
 
 const crisisChatbotFlow = ai.defineFlow(
@@ -59,6 +59,6 @@ const crisisChatbotFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return {response: output!.response!};
+    return output!;
   }
 );
