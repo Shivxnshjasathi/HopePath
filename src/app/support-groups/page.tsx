@@ -1,0 +1,80 @@
+import AppShell from "@/components/layout/app-shell";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Headphones, Users, Zap } from "lucide-react";
+
+const groups = [
+  { name: "Alcohol Support", listeners: 42, icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 22h8"/><path d="M7 10h10"/><path d="M12 10v12"/><path d="M12 2v2.34a6 6 0 0 1 0 11.32V22"/><path d="M12 2v2.34a6 6 0 0 0 0 11.32V22"/><path d="M6 12.68A6 6 0 0 0 6 5.68"/><path d="M18 12.68a6 6 0 0 1 0-7"/></svg> },
+  { name: "Nicotine Cessation", listeners: 28, icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 12H6"/><path d="M18 6H6"/><path d="m10 18 6-6"/><path d="M12 6V4H8.5a2.5 2.5 0 0 0 0 5H12"/></svg> },
+  { name: "Gambling Recovery", listeners: 15, icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h4v4H7z"/><path d="M13 13h4v4h-4z"/></svg> },
+  { name: "General Discussion", listeners: 67, icon: <Headphones /> },
+];
+
+const activeListeners = [
+    { name: "Alex", isMentor: true },
+    { name: "Brenda" },
+    { name: "Charles", isSpeaking: true },
+    { name: "Diana" },
+    { name: "Ethan" },
+];
+
+export default function SupportGroupsPage() {
+  return (
+    <AppShell title="Audio Support Groups">
+      <div className="flex-1 space-y-4 p-4 sm:p-8 pt-6">
+         <div className="space-y-2">
+            <h2 className="text-2xl font-bold tracking-tight">24/7 Drop-in Rooms</h2>
+            <p className="text-muted-foreground">
+                Connect instantly with peers for support. You can join anonymously.
+            </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {groups.map((group) => (
+            <Card key={group.name} className="flex flex-col items-center justify-center text-center p-6">
+                <div className="text-primary mb-4">{group.icon}</div>
+                <CardTitle className="mb-2">{group.name}</CardTitle>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                    <Users className="h-4 w-4" />
+                    <span>{group.listeners} listening</span>
+                </div>
+                <Button className="mt-6 w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                    <Zap className="mr-2 h-4 w-4" /> Join Anonymously
+                </Button>
+            </Card>
+          ))}
+        </div>
+        <div className="mt-8">
+            <h3 className="text-xl font-bold tracking-tight mb-4">Now in: General Discussion</h3>
+             <Card>
+                <CardContent className="p-6">
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                            <h4 className="font-semibold">Listeners ({activeListeners.length})</h4>
+                            <Button variant="destructive">Leave Room</Button>
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                            {activeListeners.map((listener) => (
+                                <div key={listener.name} className="flex flex-col items-center space-y-2">
+                                    <div className="relative">
+                                        <Avatar className={`h-20 w-20 border-2 ${listener.isSpeaking ? 'border-accent' : 'border-transparent'}`}>
+                                            <AvatarImage src={`https://placehold.co/80x80.png?text=${listener.name.charAt(0)}`} data-ai-hint="person" />
+                                            <AvatarFallback>{listener.name.charAt(0)}</AvatarFallback>
+                                        </Avatar>
+                                        {listener.isSpeaking && <Mic className="absolute bottom-0 right-0 h-5 w-5 bg-accent text-accent-foreground rounded-full p-1"/>}
+                                    </div>
+                                    <div className="text-center">
+                                        <p className="text-sm font-medium">{listener.name}</p>
+                                        {listener.isMentor && <p className="text-xs text-primary">Mentor</p>}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
+      </div>
+    </AppShell>
+  );
+}
