@@ -39,13 +39,15 @@ const prompt = ai.definePrompt({
   Keep responses short and actionable, no more than 3 sentences.
 
   Here's the chat history:
-  {{#each chatHistory}}
-    {{#if (eval "this.role === 'user'") }}
-      User: {{{this.content}}}
-    {{else}}
-      Chatbot: {{{this.content}}}
-    {{/if}}
-  {{/each}}
+  {{#if chatHistory}}
+    {{#each chatHistory}}
+      {{#if (eval "this.role === 'user'") }}
+        User: {{{this.content}}}
+      {{else}}
+        Chatbot: {{{this.content}}}
+      {{/if}}
+    {{/each}}
+  {{/if}}
 
   User message: {{{message}}}
 
