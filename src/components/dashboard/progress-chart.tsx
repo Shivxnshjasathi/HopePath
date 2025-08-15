@@ -4,17 +4,17 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } fro
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart"
 
 const chartData = [
-  { month: "Jan", daysSober: 18, urgesResisted: 12 },
-  { month: "Feb", daysSober: 25, urgesResisted: 19 },
-  { month: "Mar", daysSober: 28, urgesResisted: 22 },
-  { month: "Apr", daysSober: 30, urgesResisted: 27 },
-  { month: "May", daysSober: 27, urgesResisted: 23 },
-  { month: "Jun", daysSober: 31, urgesResisted: 29 },
+  { month: "Jan", daysGambleFree: 18, urgesResisted: 12 },
+  { month: "Feb", daysGambleFree: 25, urgesResisted: 19 },
+  { month: "Mar", daysGambleFree: 28, urgesResisted: 22 },
+  { month: "Apr", daysGambleFree: 30, urgesResisted: 27 },
+  { month: "May", daysGambleFree: 27, urgesResisted: 23 },
+  { month: "Jun", daysGambleFree: 31, urgesResisted: 29 },
 ]
 
 const chartConfig = {
-    daysSober: {
-      label: "Days Sober",
+    daysGambleFree: {
+      label: "Gamble-Free Days",
       color: "hsl(var(--chart-1))",
     },
     urgesResisted: {
@@ -32,7 +32,7 @@ export function ProgressChart() {
             <YAxis tickLine={false} axisLine={false} stroke="#888888" fontSize={12} />
             <Tooltip cursor={false} content={<ChartTooltipContent />} />
             <Legend />
-            <Bar dataKey="daysSober" fill="var(--color-daysSober)" radius={4} />
+            <Bar dataKey="daysGambleFree" fill="var(--color-daysGambleFree)" radius={4} />
             <Bar dataKey="urgesResisted" fill="var(--color-urgesResisted)" radius={4} />
         </BarChart>
         </ResponsiveContainer>

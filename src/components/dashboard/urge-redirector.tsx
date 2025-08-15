@@ -10,12 +10,12 @@ export function UrgeRedirector() {
         <Card className="shadow-lg">
             <CardHeader>
                 <CardTitle>Turn Urges into Triumphs</CardTitle>
-                <CardDescription>Redirect spending urges into savings.</CardDescription>
+                <CardDescription>Redirect gambling urges into savings.</CardDescription>
             </CardHeader>
             <CardContent>
                 <Button className="w-full h-14 text-lg font-bold bg-accent text-accent-foreground hover:bg-accent/90" size="lg">
                     <ShieldCheck className="mr-2 h-6 w-6" />
-                    Resist & Invest $5
+                    Resist & Invest $10
                 </Button>
                 <div className="mt-4 space-y-2">
                     <div className="flex justify-between text-sm font-medium">

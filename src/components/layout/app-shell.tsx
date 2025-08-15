@@ -26,6 +26,7 @@ import { usePathname } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Logo } from "@/components/icons";
 import { Button } from "../ui/button";
+import { useAuth } from "@/hooks/use-auth";
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -34,6 +35,7 @@ type AppShellProps = {
 
 export default function AppShell({ children, title }: AppShellProps) {
   const pathname = usePathname();
+  const { user, signOut } = useAuth();
 
   const menuItems = [
     { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -74,14 +76,14 @@ export default function AppShell({ children, title }: AppShellProps) {
         <SidebarFooter>
           <div className="flex items-center gap-3">
             <Avatar>
-              <AvatarImage src="https://placehold.co/40x40.png" alt="User avatar" data-ai-hint="person" />
-              <AvatarFallback>U</AvatarFallback>
+              <AvatarImage src={user?.photoURL || "https://placehold.co/40x40.png"} alt="User avatar" data-ai-hint="person" />
+              <AvatarFallback>{user?.email?.charAt(0).toUpperCase() || 'U'}</AvatarFallback>
             </Avatar>
             <div className="flex-1 overflow-hidden">
-                <p className="font-semibold text-sm truncate">User Name</p>
-                <p className="text-xs text-muted-foreground truncate">user@email.com</p>
+                <p className="font-semibold text-sm truncate">{user?.displayName || "User"}</p>
+                <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
             </div>
-            <Button variant="ghost" size="icon"><LogOut /></Button>
+            <Button variant="ghost" size="icon" onClick={signOut}><LogOut /></Button>
           </div>
         </SidebarFooter>
       </Sidebar>
